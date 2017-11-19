@@ -45,6 +45,6 @@ function StreamRecorder(config, callbackhandler) {
     } catch(exception) {
         config.recorder = undefined;
         config.datachunks = [];
-        console.error(exception)
+        console.error(exception);
     }
 }

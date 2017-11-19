@@ -13,7 +13,7 @@ function Html5Recorder(mediastream, mediastreamtype) {
     if (mediastreamtype)
         this.sessionconfig.streamtype = mediastreamtype;
 
-    this.onRecord = function(mediablob){};
+    this.onRecord = function(mediablob) {};
 }
 
 Html5Recorder.prototype = {
