@@ -60,12 +60,11 @@ var myrtcrecorder = new Html5Recorder(/*your source stream here*/,/*the stream t
 //this depends on your implementation but basically just get 
 //the stream from the RTP/SRTP channels then pass that in the parameter
 
-mytranscriptionist.start(); //This will start the audio capture from the source stream
+myrtcrecorder.start(); //This will start the audio recording for the source stream
 
-mytranscriptionist.stop(); //This will stop the audio capture, decode then send to 
-                           //google speech for transcription.
+myrtcrecorder.stop(); //This will stop the audio recording
 
-mytranscriptionist.onRecord = function(mediablob) {
+myrtcrecorder.onRecord = function(mediablob) {
     //This is the event handler that will be called once the recording is done.
     //Add your logic to make use of the media recording
 } 
