@@ -1,15 +1,40 @@
+/**********************************************************
+* Copyright (c) 2017, Gerald Selvino 
+* <gerald.selvino@protonmail.com> All rights reserved.
+*
+* This contains the function to record the source stream
+* into webm format.
+***********************************************************/
+
+/**
+* @brief Enums indicating the stream type of the source stream
+*/ 
 StreamType = {
     AUDIO: 1,
     VIDEO: 2,
     AUDIOVIDEO: 3
 };
 
+/**
+* @brief Dictionary to map the StreamType to real mime types
+* recognized by WebRTC
+*/ 
 var Mimes = [
     { AUDIO: 'audio/webm; codecs=opus' },
     { VIDEO: 'video/webm; codecs=vp9' },
     { AUDIOVIDEO: 'video/webm; codecs=vp9,opus' }
 ];
 
+/**
+* @brief The recorder function
+* @param mediastream - The source audio stream. Can be a webm audio file,
+* a microphone thru the getUserMedia(), or the remote side audio stream
+* of a WebRTC call
+* @param config - A structure that contains all the necessary input
+* parameters
+* @param callbackhandler - the callback function to be called once
+* the recording is finished.
+*/ 
 function StreamRecorder(config, callbackhandler) {
     if (!config.stream) {
         config.recorder = undefined;
