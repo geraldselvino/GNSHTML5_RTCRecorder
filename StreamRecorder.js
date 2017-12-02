@@ -10,20 +10,20 @@
 * @brief Enums indicating the stream type of the source stream
 */ 
 StreamType = {
-    AUDIO: 1,
-    VIDEO: 2,
-    AUDIOVIDEO: 3
+    AUDIO: "a",
+    VIDEO: "v",
+    AUDIOVIDEO: "av"
 };
 
 /**
 * @brief Dictionary to map the StreamType to real mime types
 * recognized by WebRTC
 */ 
-var Mimes = [
-    { AUDIO: 'audio/webm; codecs=opus' },
-    { VIDEO: 'video/webm; codecs=vp9' },
-    { AUDIOVIDEO: 'video/webm; codecs=vp9,opus' }
-];
+var Mimes = {
+    "a": 'audio/webm; codecs=opus',
+    "v": 'video/webm; codecs=vp9',
+    "av": 'video/webm; codecs=vp9,opus'
+};
 
 /**
 * @brief The recorder function
