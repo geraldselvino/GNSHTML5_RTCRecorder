@@ -36,7 +36,7 @@ var myrtcrecorder = new Html5Recorder(/*your source stream here*/,/*the stream t
 //var myrtcrecorder = new Html5Recorder();
 //navigator.getUserMedia(streamchannels,
 //                       function(stream) {
-//                           myrtcrecorder.setstream(stream, StreamType.AUDIO);
+//                           myrtcrecorder.setStream(stream, StreamType.AUDIO);
 //                           myrtcrecorder.start();
 //                       },
 //                       function(err) { 
@@ -70,4 +70,4 @@ myrtcrecorder.onRecord = function(mediablob) {
 } 
 ```
 
-
+**Please check the test web page (test.html) for working sample**

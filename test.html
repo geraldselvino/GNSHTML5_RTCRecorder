@@ -1,0 +1,60 @@
+<!--
+***********************************************************
+* Copyright (c) 2017, Gerald Selvino
+* <gerald.selvino@protonmail.com> All rights reserved.
+*
+* The test client for this library. For 10 seconds,
+* the page will listen to the microphone, record the
+* specified streams (audio, video, audio + video) into
+* webm format, then create an object URL for the recording
+* so the user can check and play the recording from the
+* same page
+***********************************************************
+-->
+<html>
+<head>
+    <script type="text/javascript" src="StreamRecorder.js"></script>
+    <script type="text/javascript" src="HTML5Recorder.js"></script>
+</head>
+<body>
+    <h3>Speak in your microphone now...</h3>
+    <h5>App is listening for 10 seconds</h5>
+    <script type="text/javascript">
+        navigator.getUserMedia = navigator.getUserMedia ||
+                                    navigator.webkitGetUserMedia ||
+                                    navigator.mozGetUserMedia;
+            
+        var streamchannels = {
+            audio: true,
+            //video: true //enable this to capture video too
+        };
+            
+        var myrtcrecorder = new Html5Recorder();
+        navigator.getUserMedia(streamchannels,
+                                function (stream) {
+                                    //Record only AUDIO. The StreamType can be AUDIO, VIDEO, AUDIOVIDEO
+                                    myrtcrecorder.setStream(stream, StreamType.AUDIO);
+                                    myrtcrecorder.start();
+                                },
+                                function(err) { 
+                                    console.error(err); 
+                                }
+                                );
+            
+        //Allow 10 seconds to record voice
+        window.setTimeout(function() {
+            myrtcrecorder.stop();
+        }, 10000)
+            
+        //Create an Object URL for the recorded webm blob
+        myrtcrecorder.onRecord = function(mediablob) {
+            var a = document.createElement('a');
+            a.target = '_blank';
+            a.innerHTML = 'Play Recording';
+            a.href = URL.createObjectURL(mediablob);
+            document.getElementById('mydiv').appendChild(a);
+        }
+    </script>
+    <div id="mydiv"></div>
+</body>
+</html>
