@@ -18,7 +18,7 @@
 </head>
 <body>
     <h3>Speak in your microphone now...</h3>
-    <h5>App is listening for 10 seconds</h5>
+    <h5 id = "status">App is listening for 10 seconds</h5>
     <script type="text/javascript">
         navigator.getUserMedia = navigator.getUserMedia ||
                                     navigator.webkitGetUserMedia ||
@@ -48,11 +48,13 @@
             
         //Create an Object URL for the recorded webm blob
         myrtcrecorder.onRecord = function(mediablob) {
-            var a = document.createElement('a');
-            a.target = '_blank';
-            a.innerHTML = 'Play Recording';
-            a.href = URL.createObjectURL(mediablob);
-            document.getElementById('mydiv').appendChild(a);
+            var audio = document.createElement('audio');
+            audio.setAttribute('controls', '');
+            document.getElementById('mydiv').appendChild(audio);
+
+            audio.controls = true;
+            audio.src = URL.createObjectURL(mediablob);
+            document.getElementById("status").innerHTML = "recorder stopped";
         }
     </script>
     <div id="mydiv"></div>
